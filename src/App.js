@@ -6,10 +6,11 @@ import {
   isAttemptProper,
   determineBullsAndCows,
   isGameOver,
-} from "./Components/GameUtil";
+} from "./Components/GamePlay";
 import GameOver from "./Components/GameOver";
-import AttemptLogs from "./Components/AttemptLogs";
-import ErrorMessage from "./Components/ErrorMessage";
+import GameHistory from "./Components/GameHistory";
+import Alerts from "./Components/Alerts";
+import Header from "./Components/Header";
 
 function App() {
   const [logs, updateLogs] = useState(Array.from(Array(12), () => []));
@@ -22,14 +23,16 @@ function App() {
     try {
       if (!isAttemptProper(attempt)) {
         throw new Error(
-          "invalid number: cannot start with 0 and must have 4 unique digits. "
+          "INVALID DATA ENTRY! Item must contain 4 unique digits and must not start with 0."
         );
       }
       if (isAlreadyAttempted(logs, attempt)) {
-        throw new Error("number already guessed");
+        throw new Error(
+          "INVALID DATA ENTRY! You already tried that combination."
+        );
       }
 
-      let updatedLog = insertAttemptLog();
+      let updatedLog = insertGameHistory();
       updateLogs(updatedLog);
       // clear input field
       setAttempt("");
@@ -45,7 +48,7 @@ function App() {
   }
 
   // insert the new attempt in most recent slot. return new log.
-  function insertAttemptLog() {
+  function insertGameHistory() {
     let newLog = [...logs]; // create copy
     for (let i = 0; i < 12; i++) {
       if (newLog[i].length === 0) {
@@ -65,10 +68,10 @@ function App() {
 
   // reset the states, effectively starting a new game.
   function reset() {
-    updateLogs(Array.from(Array(8), () => []));
+    updateLogs(Array.from(Array(12), () => []));
     _setSecretNumber(generateRandomNumber());
     setAttempt("");
-    setErrorMessage(null);
+    setErrorMessage("");
     setGameState("IN PROGRESS");
   }
 
@@ -87,11 +90,9 @@ function App() {
 
   return (
     <div className="container">
-      <div className="row">
-        <h1>Bulls and Cows</h1>
-      </div>
-      <ErrorMessage error={errorMessage} />
-      <div className="row box flex">
+      <Header />
+
+      <div className="input-container">
         <input
           id="numberInput"
           type="number"
@@ -100,19 +101,24 @@ function App() {
           value={attempt}
           disabled={gameState !== "IN PROGRESS" ? "disabled" : ""}
           placeholder="Enter 4 unique digits here"
+          className="input-text"
         ></input>
-        <button
-          disabled={gameState !== "IN PROGRESS" ? "disabled" : ""}
-          onClick={() => handleInput()}
-        >
-          Guess
-        </button>
-        <button className="button button-outline" onClick={() => reset()}>
-          Reset
-        </button>
+        <div>
+          <button
+            disabled={gameState !== "IN PROGRESS" ? "disabled" : ""}
+            onClick={() => handleInput()}
+            className="guess-button"
+          >
+            Guess
+          </button>
+          <button className="reset-button" onClick={() => reset()}>
+            Reset
+          </button>
+        </div>
       </div>
       <div className="row">
-        <AttemptLogs logs={logs} />
+        <Alerts error={errorMessage} />
+        <GameHistory logs={logs} />
       </div>
       <div className="row">
         <GameOver gameState={gameState} secretNumber={secretNumber} />

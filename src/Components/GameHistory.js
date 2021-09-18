@@ -1,12 +1,12 @@
 import React from "react";
 
-function AttemptLogs(props) {
+function GameHistory(props) {
   return (
     <div className="attempt-container">
       <div className="attempt-individual">
-        <div className="attempt-details">Attempt </div>
-        <div className="attempt-details">Guess</div>
-        <div className="attempt-details">Result</div>
+        <div className="attempt-title">Attempt </div>
+        <div className="attempt-title">Guess</div>
+        <div className="attempt-title">Bulls & Cows</div>
       </div>
       {props.logs.map((log, idx) => (
         <div className="attempt-individual" key={idx}>
@@ -19,4 +19,4 @@ function AttemptLogs(props) {
   );
 }
 
-export default AttemptLogs;
+export default GameHistory;
