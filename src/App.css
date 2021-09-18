@@ -1,38 +1,42 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.attempt-container {
+  margin: auto;
+  left: 50%;
+  background-color: rgb(218, 218, 218);
+  padding: 30px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
+}
+.attempt-individual {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  justify-content: space-between;
+}
+.attempt-details {
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.game-over {
+  margin: auto;
+  color: blue;
+  float: right;
+  padding-top: 30px;
+  margin-left: 50px;
+  font-size: 40px;
 }
