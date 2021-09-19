@@ -1,7 +1,6 @@
 # Getting Started with Create React App
 
-#Acccess the game at https://almedaria.github.io/bullsandcows-react/
-#this is still an on going project - not yet mobile responsive
+Acccess the game at https://almedaria.github.io/bullsandcows-react/. This is still an on going project and not yet mobile responsive. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
