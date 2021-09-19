@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/almedaria.github.io/bullsandcows-react/static/css/main.df09a64a.chunk.css",
-    "main.js": "/almedaria.github.io/bullsandcows-react/static/js/main.df77f7da.chunk.js",
-    "main.js.map": "/almedaria.github.io/bullsandcows-react/static/js/main.df77f7da.chunk.js.map",
-    "runtime-main.js": "/almedaria.github.io/bullsandcows-react/static/js/runtime-main.a4aac661.js",
-    "runtime-main.js.map": "/almedaria.github.io/bullsandcows-react/static/js/runtime-main.a4aac661.js.map",
-    "static/js/2.89ec6868.chunk.js": "/almedaria.github.io/bullsandcows-react/static/js/2.89ec6868.chunk.js",
-    "static/js/2.89ec6868.chunk.js.map": "/almedaria.github.io/bullsandcows-react/static/js/2.89ec6868.chunk.js.map",
-    "static/js/3.2b402a6f.chunk.js": "/almedaria.github.io/bullsandcows-react/static/js/3.2b402a6f.chunk.js",
-    "static/js/3.2b402a6f.chunk.js.map": "/almedaria.github.io/bullsandcows-react/static/js/3.2b402a6f.chunk.js.map",
-    "index.html": "/almedaria.github.io/bullsandcows-react/index.html",
-    "static/css/main.df09a64a.chunk.css.map": "/almedaria.github.io/bullsandcows-react/static/css/main.df09a64a.chunk.css.map",
-    "static/js/2.89ec6868.chunk.js.LICENSE.txt": "/almedaria.github.io/bullsandcows-react/static/js/2.89ec6868.chunk.js.LICENSE.txt"
+    "main.css": "/bullsandcows-react/static/css/main.df09a64a.chunk.css",
+    "main.js": "/bullsandcows-react/static/js/main.df77f7da.chunk.js",
+    "main.js.map": "/bullsandcows-react/static/js/main.df77f7da.chunk.js.map",
+    "runtime-main.js": "/bullsandcows-react/static/js/runtime-main.2847227d.js",
+    "runtime-main.js.map": "/bullsandcows-react/static/js/runtime-main.2847227d.js.map",
+    "static/js/2.89ec6868.chunk.js": "/bullsandcows-react/static/js/2.89ec6868.chunk.js",
+    "static/js/2.89ec6868.chunk.js.map": "/bullsandcows-react/static/js/2.89ec6868.chunk.js.map",
+    "static/js/3.2b402a6f.chunk.js": "/bullsandcows-react/static/js/3.2b402a6f.chunk.js",
+    "static/js/3.2b402a6f.chunk.js.map": "/bullsandcows-react/static/js/3.2b402a6f.chunk.js.map",
+    "index.html": "/bullsandcows-react/index.html",
+    "static/css/main.df09a64a.chunk.css.map": "/bullsandcows-react/static/css/main.df09a64a.chunk.css.map",
+    "static/js/2.89ec6868.chunk.js.LICENSE.txt": "/bullsandcows-react/static/js/2.89ec6868.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.a4aac661.js",
+    "static/js/runtime-main.2847227d.js",
     "static/js/2.89ec6868.chunk.js",
     "static/css/main.df09a64a.chunk.css",
     "static/js/main.df77f7da.chunk.js"
