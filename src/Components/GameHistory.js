@@ -1,6 +1,6 @@
 import React from "react";
 
-function GameHistory(props) {
+const GameHistory = (props) => {
   return (
     <div className="attempt-container">
       <div className="attempt-individual">
@@ -17,6 +17,6 @@ function GameHistory(props) {
       ))}
     </div>
   );
-}
+};
 
 export default GameHistory;

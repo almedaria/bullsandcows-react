@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
+import Header from "./Components/Header";
 import {
   generateRandomNumber,
   isAlreadyAttempted,
@@ -10,63 +11,82 @@ import {
 import GameOver from "./Components/GameOver";
 import GameHistory from "./Components/GameHistory";
 import Alerts from "./Components/Alerts";
-import Header from "./Components/Header";
 
 function App() {
+  //sets the guess array to only allow 12 attempts (initial state - 12 empty arrays)
   const [logs, updateLogs] = useState(Array.from(Array(12), () => []));
+  // generates the secret number - state of random number - blank
   const [secretNumber, _setSecretNumber] = useState(generateRandomNumber());
+  // setts attempt state to blank string
   const [attempt, setAttempt] = useState("");
+  // sets game state to inprogress - in progress state allows user to make attempts and enables the "guess button"
   const [gameState, setGameState] = useState("IN PROGRESS");
-  const [errorMessage, setErrorMessage] = useState(null);
+  // sets the error message to null
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleInput() {
+    //try statement tests the block of code for errors
     try {
+      // if the attempt is NOT "proper" (declared in gameplay (<4 digits, starts with 0, blank))
       if (!isAttemptProper(attempt)) {
         throw new Error(
           "INVALID DATA ENTRY! Item must contain 4 unique digits and must not start with 0."
         );
       }
+      // if data has already been logged - also declared in gameplay
       if (isAlreadyAttempted(logs, attempt)) {
         throw new Error(
           "INVALID DATA ENTRY! You already tried that combination."
         );
       }
-
+      // code that declares game history - updates the logs
       let updatedLog = insertGameHistory();
       updateLogs(updatedLog);
-      // clear input field
+      // clears the input field
       setAttempt("");
-      // calculate gamestate on proper submission
+      // checks the game state - if game is over or still in progress
       setGameState(isGameOver(updatedLog));
-      // case of no errors so far:
+      // error prompt hides in the screen if there are no errors
       setErrorMessage(null);
+
+      //catch statements handles the error
     } catch (error) {
-      // clear input for invalid inputs as well
       setAttempt("");
       setErrorMessage(error.message);
     }
   }
 
-  // insert the new attempt in most recent slot. return new log.
+  // inserts the valid attempt in the next available slot
   function insertGameHistory() {
-    let newLog = [...logs]; // create copy
+    // creates a copy of the new logs
+    let newLog = [...logs];
+    // for loop for the new log per attempt
     for (let i = 0; i < 12; i++) {
       if (newLog[i].length === 0) {
-        // check bulls n cows.
-        // update attempts as tuple: ["1234", "1A2B"]
+        // checks for number of bulls and cows
+        // checks secret numebr against attempt (logs # of bulls and # of cows)
         newLog[i] = [attempt, determineBullsAndCows(secretNumber, attempt)];
         break;
       }
     }
+    // returns the newLog to the board
     return newLog;
   }
 
-  // update attempt as input changes.
+  // updates attempt as input changes
   function handleInputChange(e) {
     setAttempt(e.target.value);
   }
 
-  // reset the states, effectively starting a new game.
+  // guess input is placed once ENTER is pressed
+  function keyPress(e) {
+    if (e.key === "Enter") {
+      handleInput();
+    }
+  }
+
+  // resets the states to start a new game
+  // same values declared  in the set state code
   function reset() {
     updateLogs(Array.from(Array(12), () => []));
     _setSecretNumber(generateRandomNumber());
@@ -75,36 +95,25 @@ function App() {
     setGameState("IN PROGRESS");
   }
 
-  // handle enter to "guess" in input.
-  // https://github.com/NatTuck/scratch-2021-01/blob/bea430447baec22eb1a5e41d4d1fcce0191b36a3/4550/0202/hangman/src/App.js#L58
-  function keyPress(ev) {
-    if (ev.key === "Enter") {
-      handleInput();
-    }
-  }
-
-  // when this function renders, set title
-  useEffect(() => {
-    document.title = "Bulls and Cows";
-  }, []);
-
   return (
     <div className="container">
       <Header />
-
       <div className="input-container">
         <input
           id="numberInput"
           type="number"
           onKeyPress={keyPress}
           onChange={handleInputChange}
+          //from gameplay
           value={attempt}
+          //disables the input field once game is over
           disabled={gameState !== "IN PROGRESS" ? "disabled" : ""}
           placeholder="Enter 4 unique digits here"
           className="input-text"
         ></input>
         <div>
           <button
+            //disables the guess button once game is over
             disabled={gameState !== "IN PROGRESS" ? "disabled" : ""}
             onClick={() => handleInput()}
             className="guess-button"
@@ -116,7 +125,7 @@ function App() {
           </button>
         </div>
       </div>
-      <div className="row">
+      <div className="">
         <Alerts error={errorMessage} />
         <GameHistory logs={logs} />
       </div>
